@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Solar</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #ffcc00;
+        }
+        img {
+            max-width: 100%;
+            cursor: pointer;
+        }
+        .video-container {
+            margin: 30px auto;
+        }
+        iframe {
+            width: 560px;
+            height: 315px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sistema Solar</h1>
+
+    <img src="Planetas.jpg" alt="Sistema Solar" usemap="#planetasmap">
+
+    <map name="planetasmap">
+        <area shape="circle" coords="62,144,62"   href="sol.html"      alt="Sol"      title="Sol">
+        <area shape="circle" coords="213,152,40"  href="mercurio.html" alt="Mercúrio" title="Mercúrio">
+        <area shape="circle" coords="398,145,89"  href="venus.html"    alt="Vénus"    title="Vénus">
+        <area shape="circle" coords="629,153,88"  href="terra.html"    alt="Terra"    title="Terra">
+    </map>
+
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/libKVRa01L8"
+                title="Sistema Solar - Vídeo educativo"
+                allowfullscreen>
+        </iframe>
+    </div>
+</body>
+</html>
