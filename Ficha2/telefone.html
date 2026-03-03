@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espaçamento Automático</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #ffcc00;
+        }
+        label {
+            display: block;
+            margin: 20px auto 8px;
+            font-size: 1.1em;
+        }
+        input[type="text"] {
+            font-size: 1.4em;
+            padding: 8px 14px;
+            border-radius: 6px;
+            border: 2px solid #ffcc00;
+            background-color: #111;
+            color: #fff;
+            width: 260px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        p.hint {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Espaçamento Automático a Cada 3 Dígitos</h1>
+
+    <label for="numInput">Introduza um número:</label>
+    <input type="text" id="numInput" maxlength="11" placeholder="000 000 000" inputmode="numeric">
+    <p class="hint">Os espaços são inseridos automaticamente a cada 3 dígitos.</p>
+
+    <p><a href="planetas_map.htm">Voltar ao Sistema Solar</a></p>
+
+    <script>
+        document.getElementById('numInput').addEventListener('input', function () {
+            var cursorPos = this.selectionStart;
+            var oldValue = this.value;
+
+            // Count digits before cursor in old value
+            var digitsBeforeCursor = oldValue.slice(0, cursorPos).replace(/\D/g, '').length;
+
+            var digits = oldValue.replace(/\D/g, '');
+            var groups = [];
+            for (var i = 0; i < digits.length; i += 3) {
+                groups.push(digits.slice(i, i + 3));
+            }
+            var newValue = groups.join(' ');
+            this.value = newValue;
+
+            // Restore cursor: find position after digitsBeforeCursor digits in new value
+            var digitCount = 0;
+            var newCursor = 0;
+            for (var j = 0; j < newValue.length; j++) {
+                if (digitCount === digitsBeforeCursor) {
+                    newCursor = j;
+                    break;
+                }
+                if (/\d/.test(newValue[j])) {
+                    digitCount++;
+                }
+                newCursor = j + 1;
+            }
+            this.setSelectionRange(newCursor, newCursor);
+        });
+    </script>
+</body>
+</html>
